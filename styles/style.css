@@ -1,5 +1,5 @@
 .page {
-  font-family: var(--family-font, 'IBM Plex Mono'), sans-serif;
+  font-family: var(--family-font, 'IBM Plex Mono'), monospace;
   background-color: var(
     --background-color,
     #000028
@@ -20,16 +20,8 @@
   text-shadow: 4px 4px 0 var(--accent-color, #ff0070);
 }
 
-/* #region HEADER */
-
-.header {
+.decorated-zone {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr min-content 1fr;
-  padding: var(--padding-value, 20px);
-  min-block-size: 668px;
-  block-size: 100vh;
 
   &::before {
     content: '';
@@ -54,6 +46,17 @@
   }
 }
 
+/* #region HEADER */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  padding: var(--padding-value, 20px);
+  min-block-size: 668px;
+  block-size: 100vh;
+}
+
 .header__rec {
   position: absolute;
   display: flex;
@@ -63,7 +66,8 @@
   inset-inline-end: 29px;
 
   &::before {
-    content: 'REC';
+    content: 'rec';
+    text-transform: uppercase;
     color: var(--accent-color, #ff0070);
     font-size: var(--size-font, 18px);
     font-style: normal;
@@ -242,7 +246,7 @@
     'sunset sunset ice-cream'
     'tape books ice-cream'
     'tape street street';
-  gap: var(--padding-inline, 20px);
+  gap: 20px;
 }
 
 .sunset {
@@ -277,34 +281,12 @@
 /* #region FOOTER */
 
 .footer {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-block-size: 668px;
   padding: var(--padding-value, 20px);
   block-size: 100vh;
-
-  &::before {
-    content: '';
-    position: absolute;
-    border-inline-start: 1px solid var(--accent-color, #ff0070);
-    border-block-end: 1px solid var(--accent-color, #ff0070);
-    inset-inline-start: 20px;
-    inset-block-end: 20px;
-    inline-size: 25px;
-    block-size: 25px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    border-inline-end: 1px solid var(--accent-color, #ff0070);
-    border-block-start: 1px solid var(--accent-color, #ff0070);
-    inset-block-start: 20px;
-    inset-inline-end: 20px;
-    inline-size: 25px;
-    block-size: 25px;
-  }
 }
 
 /* #endregion */
@@ -360,8 +342,9 @@
     grid-template-columns: 1fr;
   }
 
-  .header,
-  .footer {
+  .decorated-zone {
+    --padding-value: 10px;
+    
     &::before {
       inset-block-end: 10px;
       inset-inline-start: 10px;
@@ -374,8 +357,12 @@
   }
 
   .header__rec {
-    right: 19px;
+    inset-inline-end: 19px;
     inset-block-start: 10px;
+  }
+
+  .header__theme-menu-list {
+    gap: 10px;
   }
 
   .lg-title {
@@ -391,10 +378,15 @@
     grid-template-columns: 1fr;
   }
 
+  .section-gallery {
+    gap: 10px;
+  }
+
   .gallery {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fit, minmax(142px, 1fr));
     grid-template-areas: none;
+    gap: 10px;
   }
 
   .sunset,

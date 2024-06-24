@@ -28,4 +28,10 @@
   .header__rec {
     display: none;
   }
+
+  .page.theme_dark {
+    .header__rec {
+      display: flex;
+    }
+  }
 }
